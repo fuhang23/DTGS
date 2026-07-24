@@ -2,10 +2,16 @@
 
 ## Qualitative Results
 
-|  |  |
-|:---:|:---:|
-| **Scene 5 — GT**<br><video src="assets/scene5_gt.mp4" controls width="100%"></video> | **Scene 5 — Renders**<br><video src="assets/scene5_renders.mp4" controls width="100%"></video> |
-| **Scene 7 — GT**<br><video src="assets/scene7_gt.mp4" controls width="100%"></video> | **Scene 7 — Renders**<br><video src="assets/scene7_renders.mp4" controls width="100%"></video> |
+<table>
+  <tr>
+    <td align="center"><b>Scene 5 — GT</b><br><video src="assets/scene5_gt.mp4" controls width="100%"></video></td>
+    <td align="center"><b>Scene 5 — Renders</b><br><video src="assets/scene5_renders.mp4" controls width="100%"></video></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Scene 7 — GT</b><br><video src="assets/scene7_gt.mp4" controls width="100%"></video></td>
+    <td align="center"><b>Scene 7 — Renders</b><br><video src="assets/scene7_renders.mp4" controls width="100%"></video></td>
+  </tr>
+</table>
 
 ## Installation
 
