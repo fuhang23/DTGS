@@ -1,5 +1,12 @@
 # DTGS
 
+## Qualitative Results
+
+|  |  |
+|:---:|:---:|
+| **Scene 5 — GT**<br><video src="assets/scene5_gt.mp4" controls width="100%"></video> | **Scene 5 — Renders**<br><video src="assets/scene5_renders.mp4" controls width="100%"></video> |
+| **Scene 7 — GT**<br><video src="assets/scene7_gt.mp4" controls width="100%"></video> | **Scene 7 — Renders**<br><video src="assets/scene7_renders.mp4" controls width="100%"></video> |
+
 ## Installation
 
 ### 1. Environment
@@ -17,20 +24,6 @@ cd DTGS
 pip install -r requirements.txt
 ```
 
-### 3. Install CUDA rasterizer and KNN
-
-DTGS depends on two custom CUDA extensions from the 3DGS ecosystem:
-
-```bash
-# Gaussian rasterizer
-pip install git+https://github.com/graphdeco-inria/diff-gaussian-rasterization
-
-# Simple KNN
-pip install git+https://github.com/graphdeco-inria/simple-knn
-```
-
-> **Note:** These submodules require a CUDA toolkit (`nvcc`) installed on your system.
-
 ---
 
 ## Data Preparation
@@ -44,7 +37,7 @@ Download the **Dynamic_LTR** dataset and place it under the `data/` directory.
 ```
 DTGS/
 ├── data/
-│   └── D_thermal/
+│   └── Dynamic_LTR/
 │       ├── scene1/
 │       │   ├── images/          # Thermal infrared frames
 │       │   ├── depths/          # Depth maps (optional)
@@ -54,27 +47,6 @@ DTGS/
 │       │   └── cameras.npz      # Camera parameters
 │       ├── scene2/
 │       └── ...
-```
-
-### ZJU-MoCap Dataset
-
-To use the ZJU-MoCap dataset, organize the data as:
-
-```
-DTGS/
-├── data/
-│   └── ZJU/
-│       ├── scene8/
-│       └── ...
-```
-
-### Generating Masks
-
-If masks are not provided, use `make_mask.py` to generate all-black single-channel mask images:
-
-```bash
-# Edit the input/output paths in make_mask.py first, then run:
-python make_mask.py
 ```
 
 ---
@@ -87,15 +59,11 @@ python make_mask.py
 python train_thermal.py
 ```
 
-By default, this trains on `D_thermal/scene1`. To switch scenes or datasets, edit the following lines in `train_thermal.py`:
+By default, this trains on `Dynamic_LTR/scene1`. To switch scenes or datasets, edit the following lines in `train_thermal.py`:
 
 ```python
-exp_name = "D_thermal/scene1"
-source_path = "data/D_thermal/scene1"
-
-# For ZJU dataset:
-# exp_name = "ZJU/scene8"
-# source_path = "data/ZJU/scene8"
+exp_name = "Dynamic_LTR/scene1"
+source_path = "data/Dynamic_LTR/scene1"
 ```
 
 **Key training parameters** (passed via config or CLI):
@@ -106,7 +74,7 @@ source_path = "data/D_thermal/scene1"
 | `--test_iterations` | `[0, 500, 1000, ...]` | Iterations at which to evaluate PSNR |
 | `--save_iterations` | `[2000, 2500, 5000, 7000, 10000]` | Iterations at which to save point cloud |
 | `--configs` | `arguments/endonerf/default.py` | Hyperparameter config file (mmcv format) |
-| `--expname` | `D_thermal/scene1` | Experiment name (output subfolder) |
+| `--expname` | `Dynamic_LTR/scene1` | Experiment name (output subfolder) |
 
 Trained models and point clouds are saved to:
 
@@ -125,7 +93,7 @@ Render images, depth maps, videos, and reconstructed point clouds from a trained
 
 ```bash
 python render.py \
-    --model_path output/D_thermal/scene1 \
+    --model_path output/Dynamic_LTR/scene1 \
     --skip_train \
     --skip_video \
     --reconstruct_test \
@@ -172,7 +140,7 @@ Compute PSNR, SSIM, LPIPS, and RMSE metrics on rendered results:
 
 ```bash
 python metrics.py \
-    --model_path output/D_thermal/scene1 \
+    --model_path output/Dynamic_LTR/scene1 \
     -p test
 ```
 
@@ -183,63 +151,3 @@ python metrics.py \
 
 Results are saved as JSON files under the model directory.
 
----
-
-## Project Structure
-
-```
-DTGS/
-├── train_thermal.py              # Training entry point
-├── render.py                     # Rendering & point cloud reconstruction
-├── metrics.py                    # Evaluation (PSNR / SSIM / LPIPS / RMSE)
-├── make_mask.py                  # Mask generation utility
-├── ply_color.py                  # PLY color utility
-├── test.py                       # Image dimension testing utility
-├── requirements.txt              # Python dependencies
-│
-├── gaussian_renderer/
-│   └── __init__.py               # Rendering pipeline (render_flow)
-│
-├── scene/
-│   ├── __init__.py               # Scene class — camera & point cloud management
-│   ├── flexible_deform_model.py  # GaussianModel with deformation model
-│   ├── cameras.py                # Camera & MiniCam classes
-│   ├── dataset_readers.py        # Dataset loading entry (D_thermal / ZJU)
-│   ├── thermal_loader.py         # Dthermal_Dataset — thermal data processing
-│   ├── colmap_loader.py          # COLMAP format camera parameter parsing
-│   ├── regulation.py             # Regularization losses
-│   └── utils.py                  # Camera geometry utilities
-│
-├── utils/
-│   ├── loss_utils.py             # Loss functions (L1, SSIM, etc.)
-│   ├── general_utils.py          # LR scheduling, quaternion ops, image utils
-│   ├── graphics_utils.py         # Projection matrices, BasicPointCloud
-│   ├── image_utils.py            # psnr, rmse, mse metrics
-│   ├── camera_utils.py           # Camera loading & JSON serialization
-│   ├── sh_utils.py               # Spherical harmonic evaluation
-│   ├── scene_utils.py            # Training visualization
-│   ├── system_utils.py           # Directory & iteration utilities
-│   ├── params_utils.py           # Hyperparameter merging (mmcv config)
-│   ├── timer.py                  # Training timer
-│   └── stereo_rectify.py         # Stereo rectification utilities
-│
-├── lpipsPyTorch/                 # LPIPS perceptual loss implementation
-│   ├── __init__.py
-│   └── modules/
-│       ├── lpips.py
-│       ├── networks.py
-│       └── utils.py
-│
-├── assets/                       # Demo results for reviewers
-│   ├── scene5/
-│   │   ├── gt/                   # Ground-truth frames
-│   │   └── renders/              # Rendered frames
-│   └── scene7/
-│       ├── gt/
-│       └── renders/
-│
-└── arguments/                    # mmcv config files
-    ├── __init__.py
-    └── endonerf/
-        └── default.py            # Default hyperparameters
-```

@@ -20,7 +20,7 @@ output/
 *.ply
 !gaussian_renderer/**/*.ply
 *.npz
-*.mp4
+# *.mp4
 
 # Model checkpoints
 *.pth
