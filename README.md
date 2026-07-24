@@ -230,9 +230,16 @@ DTGS/
 │       ├── networks.py
 │       └── utils.py
 │
-└── arguments/                    # (External) mmcv config files
+├── assets/                       # Demo results for reviewers
+│   ├── scene5/
+│   │   ├── gt/                   # Ground-truth frames
+│   │   └── renders/              # Rendered frames
+│   └── scene7/
+│       ├── gt/
+│       └── renders/
+│
+└── arguments/                    # mmcv config files
+    ├── __init__.py
     └── endonerf/
         └── default.py            # Default hyperparameters
 ```
-
-> **Note:** The `arguments/` directory containing config files (e.g., `arguments/endonerf/default.py`) is not included in this repository by default. Ensure you have the appropriate config file before running training or rendering.
