@@ -2,17 +2,29 @@
 
 ## Qualitative Results
 
-**Scene 5**
+> **Note:** GIF files are large and may take a moment to load. Please be patient.
 
-| GT | Renders |
-|-----|---------|
-| ![Scene5 GT](assets/scene5_gt.gif) | ![Scene5 Renders](assets/scene5_renders.gif) |
+<p align="center"><b>Eating Scene</b></p>
 
-**Scene 7**
+| GT                                 | Renders                                      |
+| ---------------------------------- | -------------------------------------------- |
+| ![Scene5 GT](assets/eating_gt.gif) | ![Scene5 Renders](assets/eating_renders.gif) |
 
-| GT | Renders |
-|-----|---------|
-| ![Scene7 GT](assets/scene7_gt.gif) | ![Scene7 Renders](assets/scene7_renders.gif) |
+<p align="center"><b>Cycling_2 Scene</b></p>
+
+| GT                                 | Renders                                      |
+| ---------------------------------- | -------------------------------------------- |
+| ![Scene7 GT](assets/cycling_gt.gif) | ![Scene7 Renders](assets/cycling_renders.gif) |
+
+### Download Full-Resolution Videos
+
+For a clearer view of the results, full-resolution MP4 videos are available:
+
+| Scene   | Ground Truth                            | Renders                                           |
+| ------- | --------------------------------------- | ------------------------------------------------- |
+| Eating  | [eating_gt.mp4](assets/eating_gt.mp4)   | [eating_renders.mp4](assets/eating_renders.mp4)   |
+| Cycling | [cycling_gt.mp4](assets/cycling_gt.mp4) | [cycling_renders.mp4](assets/cycling_renders.mp4) |
+
 
 ## Installation
 
@@ -75,13 +87,13 @@ source_path = "data/Dynamic_LTR/scene1"
 
 **Key training parameters** (passed via config or CLI):
 
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `--iterations` | 60000 | Total training iterations |
-| `--test_iterations` | `[0, 500, 1000, ...]` | Iterations at which to evaluate PSNR |
-| `--save_iterations` | `[2000, 2500, 5000, 7000, 10000]` | Iterations at which to save point cloud |
-| `--configs` | `arguments/endonerf/default.py` | Hyperparameter config file (mmcv format) |
-| `--expname` | `Dynamic_LTR/scene1` | Experiment name (output subfolder) |
+| Parameter           | Default                           | Description                              |
+| ------------------- | --------------------------------- | ---------------------------------------- |
+| `--iterations`      | 60000                             | Total training iterations                |
+| `--test_iterations` | `[0, 500, 1000, ...]`             | Iterations at which to evaluate PSNR     |
+| `--save_iterations` | `[2000, 2500, 5000, 7000, 10000]` | Iterations at which to save point cloud  |
+| `--configs`         | `arguments/endonerf/default.py`   | Hyperparameter config file (mmcv format) |
+| `--expname`         | `Dynamic_LTR/scene1`              | Experiment name (output subfolder)       |
 
 Trained models and point clouds are saved to:
 
@@ -109,17 +121,17 @@ python render.py \
 
 **Rendering options:**
 
-| Flag | Description |
-|------|-------------|
-| `--model_path` | Path to the trained model directory |
-| `--iteration` | Checkpoint iteration to load (`-1` = latest) |
-| `--skip_train` | Skip rendering training views |
-| `--skip_test` | Skip rendering test views |
-| `--skip_video` | Skip rendering video sequence |
+| Flag                  | Description                                  |
+| --------------------- | -------------------------------------------- |
+| `--model_path`        | Path to the trained model directory          |
+| `--iteration`         | Checkpoint iteration to load (`-1` = latest) |
+| `--skip_train`        | Skip rendering training views                |
+| `--skip_test`         | Skip rendering test views                    |
+| `--skip_video`        | Skip rendering video sequence                |
 | `--reconstruct_train` | Reconstruct point clouds from training views |
-| `--reconstruct_test` | Reconstruct point clouds from test views |
-| `--reconstruct_video` | Reconstruct point clouds from video views |
-| `--configs` | Hyperparameter config file |
+| `--reconstruct_test`  | Reconstruct point clouds from test views     |
+| `--reconstruct_video` | Reconstruct point clouds from video views    |
+| `--configs`           | Hyperparameter config file                   |
 
 Rendered outputs are saved to:
 
@@ -151,10 +163,10 @@ python metrics.py \
     -p test
 ```
 
-| Flag | Description |
-|------|-------------|
-| `--model_path` / `-m` | Path(s) to the trained model directory |
-| `--phase` / `-p` | Evaluation phase: `train`, `test`, or `video` |
+| Flag                  | Description                                   |
+| --------------------- | --------------------------------------------- |
+| `--model_path` / `-m` | Path(s) to the trained model directory        |
+| `--phase` / `-p`      | Evaluation phase: `train`, `test`, or `video` |
 
 Results are saved as JSON files under the model directory.
 

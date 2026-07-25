@@ -36,10 +36,10 @@ if __name__ == "__main__":
     root = Path(__file__).parent  # assets 目录
 
     tasks = [
-        (root / "scene5" / "gt",      root / "scene5_gt.mp4"),
-        (root / "scene5" / "renders", root / "scene5_renders.mp4"),
-        (root / "scene7" / "gt",      root / "scene7_gt.mp4"),
-        (root / "scene7" / "renders", root / "scene7_renders.mp4"),
+        (root / "eating" / "gt",      root / "eating_gt.mp4"),
+        (root / "eating" / "renders", root / "eating_renders.mp4"),
+        (root / "cycling" / "gt",      root / "cycling_gt.mp4"),
+        (root / "cycling" / "renders", root / "cycling_renders.mp4"),
     ]
 
     print("=" * 50)

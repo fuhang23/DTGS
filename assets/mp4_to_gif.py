@@ -60,10 +60,10 @@ if __name__ == "__main__":
     ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
 
     tasks = [
-        (root / "scene5_gt.mp4",      root / "scene5_gt.gif"),
-        (root / "scene5_renders.mp4", root / "scene5_renders.gif"),
-        (root / "scene7_gt.mp4",      root / "scene7_gt.gif"),
-        (root / "scene7_renders.mp4", root / "scene7_renders.gif"),
+        (root / "eating_gt.mp4",      root / "eating_gt.gif"),
+        (root / "eating_renders.mp4", root / "eating_renders.gif"),
+        (root / "cycling_gt.mp4",      root / "cycling_gt.gif"),
+        (root / "cycling_renders.mp4", root / "cycling_renders.gif"),
     ]
 
     print("=" * 50)
