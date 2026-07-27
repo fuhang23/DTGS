@@ -4,17 +4,23 @@
 
 > **Note:** GIF files are large and may take a moment to load. Please be patient.
 
-<p align="center"><b>Eating Scene</b></p>
+<p align="center"><b>demo1</b></p>
 
 | GT                                 | Renders                                      |
 | ---------------------------------- | -------------------------------------------- |
-| ![Scene5 GT](assets/eating_gt.gif) | ![Scene5 Renders](assets/eating_renders.gif) |
+| ![demo1 GT](assets/demo1_gt.gif) | ![demo1 Renders](assets/demo1_renders.gif) |
 
-<p align="center"><b>Cycling_2 Scene</b></p>
+<p align="center"><b>demo2</b></p>
+
+| GT                               | Renders                                    |
+| -------------------------------- | ------------------------------------------ |
+| ![demo2 GT](assets/demo2_gt.gif) | ![demo2 Renders](assets/demo2_renders.gif) |
+
+<p align="center"><b>demo3</b></p>
 
 | GT                                 | Renders                                      |
 | ---------------------------------- | -------------------------------------------- |
-| ![Scene7 GT](assets/cycling_gt.gif) | ![Scene7 Renders](assets/cycling_renders.gif) |
+| ![demo3 GT](assets/demo3_gt.gif) | ![demo3 Renders](assets/demo3_renders.gif) |
 
 ### Download Full-Resolution Videos
 
@@ -22,8 +28,9 @@ For a clearer view of the results, full-resolution MP4 videos are available:
 
 | Scene   | Ground Truth                            | Renders                                           |
 | ------- | --------------------------------------- | ------------------------------------------------- |
-| Eating  | [eating_gt.mp4](assets/eating_gt.mp4)   | [eating_renders.mp4](assets/eating_renders.mp4)   |
-| Cycling | [cycling_gt.mp4](assets/cycling_gt.mp4) | [cycling_renders.mp4](assets/cycling_renders.mp4) |
+| demo1   | [demo1_gt.mp4](assets/demo1_gt.mp4)     | [demo1_renders.mp4](assets/demo1_renders.mp4)     |
+| demo2   | [demo2_gt.mp4](assets/demo2_gt.mp4)     | [demo2_renders.mp4](assets/demo2_renders.mp4)     |
+| demo3   | [demo3_gt.mp4](assets/demo3_gt.mp4)     | [demo3_renders.mp4](assets/demo3_renders.mp4)     |
 
 
 ## Installation
