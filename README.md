@@ -92,16 +92,6 @@ exp_name = "Dynamic_LTR/scene1"
 source_path = "data/Dynamic_LTR/scene1"
 ```
 
-**Key training parameters** (passed via config or CLI):
-
-| Parameter           | Default                           | Description                              |
-| ------------------- | --------------------------------- | ---------------------------------------- |
-| `--iterations`      | 60000                             | Total training iterations                |
-| `--test_iterations` | `[0, 500, 1000, ...]`             | Iterations at which to evaluate PSNR     |
-| `--save_iterations` | `[2000, 2500, 5000, 7000, 10000]` | Iterations at which to save point cloud  |
-| `--configs`         | `arguments/endonerf/default.py`   | Hyperparameter config file (mmcv format) |
-| `--expname`         | `Dynamic_LTR/scene1`              | Experiment name (output subfolder)       |
-
 Trained models and point clouds are saved to:
 
 ```
